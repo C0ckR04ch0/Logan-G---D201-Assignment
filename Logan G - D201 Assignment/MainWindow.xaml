@@ -7,6 +7,13 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="59*"/>
+            <ColumnDefinition Width="41*"/>
+        </Grid.ColumnDefinitions>
+        <DataGrid x:Name="dtgMovies" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,0,105,309"/>
+        <TextBox HorizontalAlignment="Left" Margin="0,130,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="0,153,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>
