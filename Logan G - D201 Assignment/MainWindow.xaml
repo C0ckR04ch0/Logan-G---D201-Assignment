@@ -6,15 +6,16 @@
         xmlns:local="clr-namespace:Logan_G___D201_Assignment"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <Grid x:Name="btnReturn">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="59*"/>
-            <ColumnDefinition Width="41*"/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <DataGrid x:Name="dtgMovies" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,0,105,309"/>
+        <DataGrid x:Name="dtgMovies" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,0,433,309"/>
         <TextBox x:Name="tbxSearch" HorizontalAlignment="Left" Margin="0,130,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Button x:Name="btnSearch" Content="Search" HorizontalAlignment="Left" Margin="0,153,0,0" VerticalAlignment="Top" Click="btnSearch_Click"/>
-        <Button x:Name="Refresh" Content="Refresh" HorizontalAlignment="Left" Margin="380,3,0,0" VerticalAlignment="Top" Click="Refresh_Click"/>
+        <Button x:Name="btnRefresh" Content="Refresh" HorizontalAlignment="Left" Margin="380,3,0,0" VerticalAlignment="Top" Click="Refresh_Click"/>
+        <Button x:Name="btnBorrow" Content="Borrow" HorizontalAlignment="Left" Margin="381,28,0,0" VerticalAlignment="Top" Click="btnBorrow_Click"/>
+        <Button x:Name="btnReturn1" Content="Return" HorizontalAlignment="Center" Margin="0,53,0,0" VerticalAlignment="Top" Width="46" Click="btnReturn1_Click"/>
 
     </Grid>
 </Window>

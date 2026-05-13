@@ -24,7 +24,7 @@ namespace Logan_G___D201_Assignment
     public partial class MainWindow : Window
     {
         private Hashtable movieTable;
-        private Queue<string> customers = new Queue<string>();
+        private Dictionary<int, Queue<string>> movieDictionary = new Dictionary<int, Queue<string>>();
 
         private Movie HTTYD1;
         private Movie HTTYD2;
@@ -52,10 +52,6 @@ namespace Logan_G___D201_Assignment
             
             loadMovieOnStartup();
 
-            if ()
-            {
-
-            }
         }
 
         //Converts a string into an integer if exists, then if that integer contains the key of the Movie which is MovieID then it will display it in the dtgMovies
@@ -76,7 +72,6 @@ namespace Logan_G___D201_Assignment
 
         private void loadMovieOnStartup()
         {
-
             MovieLinkedList movieCollection = new MovieLinkedList();
 
             movieCollection.movieInsertion(HTTYD1);
@@ -88,8 +83,82 @@ namespace Logan_G___D201_Assignment
 
         private void Refresh_Click(object sender, RoutedEventArgs e)
         {
-            dtgMovies.DataContext = null;
-            loadMovieOnStartup();
+            dtgMovies.Items.Refresh();
+        }
+
+        private void btnBorrow_Click(object sender, RoutedEventArgs e)
+        {
+
+            Movie selectedMovie = dtgMovies.SelectedItem as Movie;
+
+            if (selectedMovie == null)
+            {
+                MessageBox.Show("Please select a movie to borrow");
+            }
+            else
+            {
+                if (selectedMovie.Availablilty == true)
+                {
+                    selectedMovie.Availablilty = false;
+                    MessageBox.Show("You have borrowed a movie");
+                    dtgMovies.Items.Refresh();
+                }
+                else if (string.IsNullOrWhiteSpace(tbxSearch.Text))
+                {
+                    MessageBox.Show("Please put your name in the textbox");
+                }
+                else
+                {
+                    if (!movieDictionary.ContainsKey(selectedMovie.MovieID)) 
+                    {
+                        movieDictionary[selectedMovie.MovieID] = new Queue<string>();
+                    }
+
+                    movieDictionary[selectedMovie.MovieID].Enqueue(tbxSearch.Text);
+
+                    MessageBox.Show($"{tbxSearch.Text} added to waiting list for {selectedMovie.MovieID}");
+                }
+                //if (movieDictionary.ContainsKey(selectedMovie.MovieID))
+                //{
+                //    Queue<string> waitingList = movieDictionary[selectedMovie.MovieID];
+
+                //    string queueText = string.Join(Environment.NewLine, waitingList);
+
+                //    MessageBox.Show("Waiting list:\n" + queueText);
+                //}
+            }
+        }
+
+        private void btnReturn1_Click(object sender, RoutedEventArgs e)
+        {
+            Movie selectedMovie = (Movie)dtgMovies.SelectedItem;
+
+            if (selectedMovie == null) 
+            {
+                MessageBox.Show("Please select a movie to return");
+            }
+            else
+            {
+                if (selectedMovie.Availablilty == true)
+                {
+                    MessageBox.Show("This movie has already been returned");
+                }
+                else
+                {
+                    if (movieDictionary.ContainsKey(selectedMovie.MovieID) && movieDictionary[selectedMovie.MovieID].Count > 0) 
+                    {
+                        string nextCustomer = movieDictionary[selectedMovie.MovieID].Peek();
+                        MessageBox.Show(nextCustomer + " is next to rent");
+                        movieDictionary[selectedMovie.MovieID].Dequeue();
+                    }
+                    else
+                    {
+                        selectedMovie.Availablilty = true;
+                        MessageBox.Show("Movie is available to be rented");
+                        dtgMovies.Items.Refresh();
+                    }
+                }
+            }
         }
     }
 }
