@@ -36,7 +36,7 @@
     //creating a linked list for the entire Movie Collection
     public class MovieLinkedList
     {
-        private MovieNode head;
+        public MovieNode head;
 
         public void movieInsertion(Movie movie)
         {
@@ -70,6 +70,56 @@
             }
 
             return movieList;
+        }
+
+        public MovieNode GetMiddle(MovieNode start, MovieNode end)
+        {
+            if (start == null)
+            {
+                return null;
+            }
+
+            MovieNode slow = start;
+            MovieNode fast = start;
+
+            while (fast != end && fast.Next != end)
+            {
+                fast = fast.Next.Next;
+                slow = slow.Next;
+            }
+
+            return slow;
+        }
+
+        public MovieNode BinarySearch(MovieNode head, int searchedID)
+        {
+            MovieNode start = head;
+            MovieNode end = null;
+
+            while (start != end)
+            {
+                MovieNode mid = GetMiddle(start, end);
+
+                if (mid == null)
+                {
+                    return null;
+                }
+                if (mid.Data.MovieID == searchedID)
+                {
+                    return mid;
+                }
+                if (mid.Data.MovieID < searchedID)
+                { 
+                    start = mid.Next;
+                }
+                else
+                {
+                    end = mid;
+                }
+
+            }
+
+            return null;
         }
     }
 }

@@ -16,6 +16,8 @@
         <Button x:Name="btnRefresh" Content="Refresh" HorizontalAlignment="Left" Margin="380,3,0,0" VerticalAlignment="Top" Click="Refresh_Click"/>
         <Button x:Name="btnBorrow" Content="Borrow" HorizontalAlignment="Left" Margin="381,28,0,0" VerticalAlignment="Top" Click="btnBorrow_Click"/>
         <Button x:Name="btnReturn1" Content="Return" HorizontalAlignment="Center" Margin="0,53,0,0" VerticalAlignment="Top" Width="46" Click="btnReturn1_Click"/>
+        <Button x:Name="btnLinearSearch" Content="Linear Search" HorizontalAlignment="Left" Margin="0,178,0,0" VerticalAlignment="Top" Click="btnLinearSearch_Click"/>
+        <Button x:Name="btnBinarySearch" Content="Binary Search" HorizontalAlignment="Left" Margin="0,203,0,0" VerticalAlignment="Top" Click="btnBinarySearch_Click"/>
 
     </Grid>
 </Window>

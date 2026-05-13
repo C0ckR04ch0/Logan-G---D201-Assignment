@@ -25,6 +25,7 @@ namespace Logan_G___D201_Assignment
     {
         private Hashtable movieTable;
         private Dictionary<int, Queue<string>> movieDictionary = new Dictionary<int, Queue<string>>();
+        MovieLinkedList movieCollection;
 
         private Movie HTTYD1;
         private Movie HTTYD2;
@@ -58,7 +59,7 @@ namespace Logan_G___D201_Assignment
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
             string searchBox = tbxSearch.Text;
-            int i = 0;
+            int i;
             Int32.TryParse(searchBox, out i);
 
             if (movieTable.ContainsKey(i))
@@ -72,7 +73,7 @@ namespace Logan_G___D201_Assignment
 
         private void loadMovieOnStartup()
         {
-            MovieLinkedList movieCollection = new MovieLinkedList();
+            movieCollection = new MovieLinkedList();
 
             movieCollection.movieInsertion(HTTYD1);
             movieCollection.movieInsertion(HTTYD2);
@@ -83,7 +84,7 @@ namespace Logan_G___D201_Assignment
 
         private void Refresh_Click(object sender, RoutedEventArgs e)
         {
-            dtgMovies.Items.Refresh();
+            loadMovieOnStartup();
         }
 
         private void btnBorrow_Click(object sender, RoutedEventArgs e)
@@ -118,14 +119,6 @@ namespace Logan_G___D201_Assignment
 
                     MessageBox.Show($"{tbxSearch.Text} added to waiting list for {selectedMovie.MovieID}");
                 }
-                //if (movieDictionary.ContainsKey(selectedMovie.MovieID))
-                //{
-                //    Queue<string> waitingList = movieDictionary[selectedMovie.MovieID];
-
-                //    string queueText = string.Join(Environment.NewLine, waitingList);
-
-                //    MessageBox.Show("Waiting list:\n" + queueText);
-                //}
             }
         }
 
@@ -159,6 +152,43 @@ namespace Logan_G___D201_Assignment
                     }
                 }
             }
+        }
+
+        private void btnLinearSearch_Click(object sender, RoutedEventArgs e)
+        {
+            string movieTitle = tbxSearch.Text;
+            MovieNode current = movieCollection.head;
+            List<Movie> titleResult = new List<Movie>();
+
+            while (current != null) 
+            {
+                if (current.Data.Title.Equals(movieTitle, StringComparison.OrdinalIgnoreCase)) 
+                {
+                    titleResult.Add(current.Data);
+                }
+                current = current.Next;
+            }
+            dtgMovies.ItemsSource = titleResult;
+        }
+
+        private void btnBinarySearch_Click(object sender, RoutedEventArgs e)
+        {
+            string temp = tbxSearch.Text;
+            int movieID;
+            Int32.TryParse(temp, out movieID);
+
+            MovieNode middle = movieCollection.BinarySearch(movieCollection.head, movieID);
+
+            if (middle != null)
+            {
+                dtgMovies.ItemsSource = new List<Movie> { middle.Data };
+            }
+            else
+            {
+                MessageBox.Show("ID not found");
+            }
+
+            
         }
     }
 }
