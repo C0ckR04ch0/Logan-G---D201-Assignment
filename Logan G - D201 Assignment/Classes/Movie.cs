@@ -18,6 +18,58 @@
             ReleaseYear = release_year;
             Availablilty = availability;
         }
+    }
 
+    //Creating Nodes for movies
+    public class MovieNode
+    {
+        public Movie Data;
+        public MovieNode Next;
+
+        public MovieNode(Movie movie)
+        {
+            Data = movie;
+            Next = null;
+        }
+    }
+
+    //creating a linked list for the entire Movie Collection
+    public class MovieLinkedList
+    {
+        private MovieNode Head;
+
+        public void MovieInsertion(Movie movie)
+        {
+            MovieNode NewMovieNode = new MovieNode(movie);
+            if (Head == null)
+            {
+                Head = NewMovieNode;
+            }
+            else
+            {
+                MovieNode current = Head;
+                while (current.Next != null)
+                {
+                    current = current.Next;
+                }
+                current.Next = NewMovieNode;
+            }
+        }
+
+
+        //Ensures that the Datagrid can read any movies in the linked list
+        public List<Movie> ToList()
+        {
+            List<Movie> MovieList = new List<Movie>();
+            MovieNode current = Head;
+
+            while (current != null)
+            {
+                MovieList.Add(current.Data);
+                current = current.Next;
+            }
+
+            return MovieList;
+        }
     }
 }

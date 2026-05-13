@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿using System.Collections;
+using System.Runtime.ExceptionServices;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -17,15 +19,7 @@ namespace Logan_G___D201_Assignment
     /// </summary>
     /// 
 
-    //public class MovieNode
-    //{
-
-    //}
-
-    //public class MyLinkedList
-    //{
-
-    //}
+    
 
     public partial class MainWindow : Window
     {
@@ -33,8 +27,6 @@ namespace Logan_G___D201_Assignment
         {
             InitializeComponent();
             LoadMovieOnStartup();
-
-
         }
 
         private void btnSearch_Click(object sender, RoutedEventArgs e)
@@ -42,10 +34,15 @@ namespace Logan_G___D201_Assignment
 
         }
 
+
         private void LoadMovieOnStartup()
         {
-            Movie HTTYD = new Movie(1, "How to Train your Dragon", "Chris Sanders", "Fantasy", 2010, true);
-            dtgMovies.ItemsSource = new List<Movie>([HTTYD]);
+            MovieLinkedList MovieCollection = new MovieLinkedList();
+
+            MovieCollection.MovieInsertion(new Movie(1, "How to Train your Dragon", "Chris Sanders", "Fantasy", 2010, true));
+            MovieCollection.MovieInsertion(new Movie(2, "How to Train your Dragon 2", "Dean DeBlois", "Fantasy", 2014, true));
+
+            dtgMovies.ItemsSource = MovieCollection.ToList();
         }
     }
 }
