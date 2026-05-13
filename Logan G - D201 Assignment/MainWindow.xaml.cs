@@ -30,6 +30,8 @@ namespace Logan_G___D201_Assignment
         private Movie HTTYD1;
         private Movie HTTYD2;
         private Movie alien;
+        private Movie paddington;
+        private Movie hungerGames;
         
         private Movie storedMovie1;
 
@@ -42,10 +44,15 @@ namespace Logan_G___D201_Assignment
             HTTYD1 = new Movie(1, "How to Train your Dragon", "Chris Sanders", "Fantasy", 2010, true);
             HTTYD2 = new Movie(2, "How to Train your Dragon 2", "Dean DeBlois", "Fantasy", 2014, true);
             alien = new Movie(3, "Alien", "Joe Mama", "Horror", 1990, false);
+            paddington = new Movie(4, "Paddington", "Some Guy", "Comedy", 2001, true);
+            hungerGames = new Movie(5, "Hunger Games", "Donald J Trump", "Action", 2009, false);
+
 
             movieTable.Add(HTTYD1.MovieID, HTTYD1);
             movieTable.Add(HTTYD2.MovieID, HTTYD2);
             movieTable.Add(alien.MovieID, alien);
+            movieTable.Add(paddington.MovieID, paddington);
+            movieTable.Add(hungerGames.MovieID, hungerGames);
 
 
             storedMovie1 = (Movie)movieTable[1];
@@ -78,6 +85,8 @@ namespace Logan_G___D201_Assignment
             movieCollection.movieInsertion(HTTYD1);
             movieCollection.movieInsertion(HTTYD2);
             movieCollection.movieInsertion(alien);
+            movieCollection.movieInsertion(paddington);
+            movieCollection.movieInsertion(hungerGames);
 
             dtgMovies.ItemsSource = movieCollection.ToList();
         }
@@ -187,8 +196,20 @@ namespace Logan_G___D201_Assignment
             {
                 MessageBox.Show("ID not found");
             }
+        }
 
-            
+        private void btnBubbleSort_Click(object sender, RoutedEventArgs e)
+        {
+            movieCollection.BubbleSort();
+
+            dtgMovies.ItemsSource = null;
+            dtgMovies.ItemsSource = movieCollection.ToList();
+        }
+
+        private void btnMergeSort_Click(object sender, RoutedEventArgs e)
+        {
+            movieCollection.MergeSortByReleaseYear();
+            dtgMovies.ItemsSource = movieCollection.ToList();
         }
     }
 }

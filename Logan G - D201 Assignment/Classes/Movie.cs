@@ -56,6 +56,102 @@
             }
         }
 
+        public void BubbleSort()
+        {
+            if (head == null || head.Next == null) 
+            {
+                return;
+            }
+
+            bool swapped;
+            do
+            {
+                swapped = false;
+                MovieNode current = head;
+                while (current.Next != null)
+                {
+                    if (string.Compare(current.Data.Title, current.Next.Data.Title) > 0)
+                    {
+                        Movie temp = current.Data;
+                        current.Data = current.Next.Data;
+                        current.Next.Data = temp;
+
+                        swapped = true;
+                    }
+                    current = current.Next;
+                }
+            }
+            while (swapped);
+        }
+
+        public MovieNode GetMiddleMergeSort(MovieNode head)
+        {
+            if (head == null)
+            {
+                return null;
+            }
+
+            MovieNode slow = head;
+            MovieNode fast = head;
+
+            while (fast.Next != null && fast.Next.Next != null)
+            {
+                slow = slow.Next;
+                fast = fast.Next.Next;
+            }
+
+            return slow;
+        }
+
+
+        public void MergeSortByReleaseYear()
+        {
+            head = MergeSort(head);
+        }
+
+        public MovieNode MergeSort(MovieNode node)
+        {
+            if (node == null || node.Next == null)
+            {
+                return node;
+            }
+
+            MovieNode middle = GetMiddleMergeSort(node);
+            MovieNode nextOfMiddle = middle.Next;
+            middle.Next = null;
+
+            MovieNode left = MergeSort(node);
+            MovieNode right = MergeSort(nextOfMiddle);
+
+            return SortedMerge(left, right);
+        }
+
+        public MovieNode SortedMerge(MovieNode a, MovieNode b)
+        {
+            if (a == null)
+            {
+                return b;
+            }
+            if (b == null)
+            {
+                return a;
+            }
+
+            MovieNode result;
+
+            if (a.Data.ReleaseYear <= b.Data.ReleaseYear)
+            {
+                result = a;
+                result.Next = SortedMerge(a.Next, b);
+            }
+            else
+            {
+                result = b;
+                result.Next = SortedMerge(a, b.Next);
+            }
+
+            return result;
+        }
 
         //Ensures that the Datagrid can read any movies in the linked list
         public List<Movie> ToList()

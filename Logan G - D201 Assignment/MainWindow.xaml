@@ -10,14 +10,16 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <DataGrid x:Name="dtgMovies" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,0,433,309"/>
-        <TextBox x:Name="tbxSearch" HorizontalAlignment="Left" Margin="0,130,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="btnSearch" Content="Search" HorizontalAlignment="Left" Margin="0,153,0,0" VerticalAlignment="Top" Click="btnSearch_Click"/>
-        <Button x:Name="btnRefresh" Content="Refresh" HorizontalAlignment="Left" Margin="380,3,0,0" VerticalAlignment="Top" Click="Refresh_Click"/>
-        <Button x:Name="btnBorrow" Content="Borrow" HorizontalAlignment="Left" Margin="381,28,0,0" VerticalAlignment="Top" Click="btnBorrow_Click"/>
-        <Button x:Name="btnReturn1" Content="Return" HorizontalAlignment="Center" Margin="0,53,0,0" VerticalAlignment="Top" Width="46" Click="btnReturn1_Click"/>
-        <Button x:Name="btnLinearSearch" Content="Linear Search" HorizontalAlignment="Left" Margin="0,178,0,0" VerticalAlignment="Top" Click="btnLinearSearch_Click"/>
-        <Button x:Name="btnBinarySearch" Content="Binary Search" HorizontalAlignment="Left" Margin="0,203,0,0" VerticalAlignment="Top" Click="btnBinarySearch_Click"/>
+        <DataGrid x:Name="dtgMovies" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,10,10,217"/>
+        <TextBox x:Name="tbxSearch" HorizontalAlignment="Left" Margin="10,222,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="266"/>
+        <Button x:Name="btnSearch" Content="Search" HorizontalAlignment="Left" Margin="10,245,0,0" VerticalAlignment="Top" Click="btnSearch_Click" Width="119"/>
+        <Button x:Name="btnRefresh" Content="Refresh" HorizontalAlignment="Left" Margin="159,245,0,0" VerticalAlignment="Top" Click="Refresh_Click" Width="117"/>
+        <Button x:Name="btnBorrow" Content="Borrow" HorizontalAlignment="Left" Margin="638,245,0,0" VerticalAlignment="Top" Click="btnBorrow_Click" Width="152"/>
+        <Button x:Name="btnReturn1" Content="Return" HorizontalAlignment="Left" Margin="638,270,0,0" VerticalAlignment="Top" Width="152" Click="btnReturn1_Click"/>
+        <Button x:Name="btnLinearSearch" Content="Linear Search" HorizontalAlignment="Left" Margin="10,270,0,0" VerticalAlignment="Top" Click="btnLinearSearch_Click" Width="119"/>
+        <Button x:Name="btnBinarySearch" Content="Binary Search" HorizontalAlignment="Left" Margin="10,295,0,0" VerticalAlignment="Top" Click="btnBinarySearch_Click" Width="119"/>
+        <Button x:Name="btnBubbleSort" Content="Bubble Sort" HorizontalAlignment="Left" Margin="159,270,0,0" VerticalAlignment="Top" Click="btnBubbleSort_Click" Width="117"/>
+        <Button x:Name="btnMergeSort" Content="Merge Sort" HorizontalAlignment="Left" Margin="159,295,0,0" VerticalAlignment="Top" Click="btnMergeSort_Click" Width="117"/>
 
     </Grid>
 </Window>
