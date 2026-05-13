@@ -36,23 +36,23 @@
     //creating a linked list for the entire Movie Collection
     public class MovieLinkedList
     {
-        private MovieNode Head;
+        private MovieNode head;
 
-        public void MovieInsertion(Movie movie)
+        public void movieInsertion(Movie movie)
         {
-            MovieNode NewMovieNode = new MovieNode(movie);
-            if (Head == null)
+            MovieNode newMovieNode = new MovieNode(movie);
+            if (head == null)
             {
-                Head = NewMovieNode;
+                head = newMovieNode;
             }
             else
             {
-                MovieNode current = Head;
+                MovieNode current = head;
                 while (current.Next != null)
                 {
                     current = current.Next;
                 }
-                current.Next = NewMovieNode;
+                current.Next = newMovieNode;
             }
         }
 
@@ -60,16 +60,16 @@
         //Ensures that the Datagrid can read any movies in the linked list
         public List<Movie> ToList()
         {
-            List<Movie> MovieList = new List<Movie>();
-            MovieNode current = Head;
+            List<Movie> movieList = new List<Movie>();
+            MovieNode current = head;
 
             while (current != null)
             {
-                MovieList.Add(current.Data);
+                movieList.Add(current.Data);
                 current = current.Next;
             }
 
-            return MovieList;
+            return movieList;
         }
     }
 }
